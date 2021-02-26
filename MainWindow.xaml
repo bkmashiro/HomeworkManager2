@@ -14,6 +14,8 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid>
+        <Label Content="Homework Manager" FontSize="190" Margin="0,430,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBlock VerticalAlignment="Top" Text="HomeworkManager 1.0.0.8 baka_mashiro @ &#x000A; bakamashiro.syz " Height="261" Margin="0,10,10,0" HorizontalAlignment="Right" Width="436" FontSize="20"/>
         <TextBlock x:Name="haiku" TextWrapping="Wrap" Text="  さびしさや　一尺消えて　ゆくほたる" FontFamily="MingLiU_HKSCS-ExtB" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,57,0,0"/>
         <TextBlock Text="        流萤断续光  一明一灭一尺间  寂寞何以堪" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,98,0,0" />
         <DockPanel x:Name="dk">
@@ -92,7 +94,7 @@
                                          Height="30">
                                     <Canvas Width="24"
                                             Height="24">
-                                        <Path Data="M16.5,12A2.5,2.5 0 0,0 19,9.5A2.5,2.5 0 0,0 16.5,7A2.5,2.5 0 0,0 14,9.5A2.5,2.5 0 0,0 16.5,12M9,11A3,3 0 0,0 12,8A3,3 0 0,0 9,5A3,3 0 0,0 6,8A3,3 0 0,0 9,11M16.5,14C14.67,14 11,14.92 11,16.75V19H22V16.75C22,14.92 18.33,14 16.5,14M9,13C6.67,13 2,14.17 2,16.5V19H9V16.75C9,15.9 9.33,14.41 11.37,13.28C10.5,13.1 9.66,13 9,13Z"
+                                        <Path Data="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"
                                               Fill="White" />
                                     </Canvas>
                                 </Viewbox>
@@ -110,7 +112,7 @@
                                          Height="30">
                                     <Canvas Width="24"
                                             Height="24">
-                                        <Path Data="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22A9,9 0 0,0 21,13A9,9 0 0,0 12,4M12.5,8H11V14L15.75,16.85L16.5,15.62L12.5,13.25V8M7.88,3.39L6.6,1.86L2,5.71L3.29,7.24L7.88,3.39M22,5.72L17.4,1.86L16.11,3.39L20.71,7.25L22,5.72Z"
+                                        <Path Data="M4 7C4 4.79 7.58 3 12 3S20 4.79 20 7 16.42 11 12 11 4 9.21 4 7M19.72 13.05C19.9 12.71 20 12.36 20 12V9C20 11.21 16.42 13 12 13S4 11.21 4 9V12C4 14.21 7.58 16 12 16C12.65 16 13.28 15.96 13.88 15.89C14.93 14.16 16.83 13 19 13C19.24 13 19.5 13 19.72 13.05M13.1 17.96C12.74 18 12.37 18 12 18C7.58 18 4 16.21 4 14V17C4 19.21 7.58 21 12 21C12.46 21 12.9 21 13.33 20.94C13.12 20.33 13 19.68 13 19C13 18.64 13.04 18.3 13.1 17.96M23 19L20 16V18H16V20H20V22L23 19Z"
                                               Fill="White" />
                                     </Canvas>
                                 </Viewbox>
@@ -198,6 +200,7 @@
                 </Grid>
             </materialDesign:ColorZone>
             <Frame x:Name="MainPage"  NavigationUIVisibility="Hidden" Grid.RowSpan="1"  Grid.Row="0"  ScrollViewer.CanContentScroll="False"   VerticalAlignment="Stretch" VerticalContentAlignment="Top" DockPanel.Dock="Top"/>
+
 
         </DockPanel>
         <Button x:Name="flip" Width="60"
