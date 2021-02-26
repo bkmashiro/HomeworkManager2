@@ -1,5 +1,4 @@
-﻿using MaterialDesignThemes.Wpf;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
@@ -27,14 +26,27 @@ namespace HomeworkManager
             Lesson_Settings.Visibility = Visibility.Hidden;
             slider.Visibility = Visibility.Hidden;
 
+            time.Text = $"{(tt.EndTime.Year > 2050 ? "无限制时间" : $"{GetSection(tt.EndTime)} {tt.EndTime.ToShortTimeString()}")}    ";
+           // time.Text = ( : Environment.NewLine + tt.EndTime.ToLongDateString() + tt.EndTime.ToLongTimeString());
             lesson_name.Text = "  " + t.name;
-            text.AppendText(((tt.EndTime.Year > 2050 ? "无限制时间" : Environment.NewLine + tt.EndTime.ToLongDateString() + tt.EndTime.ToLongTimeString()) + (Environment.NewLine + tt.Appendix == string.Empty ? string.Empty : tt.Appendix) + Environment.NewLine + tt.Content).Trim());
+            text.AppendText(((tt.Appendix == string.Empty ? string.Empty : tt.Appendix) + Environment.NewLine + tt.Content).Trim());
 
         }
         pv.Task tt = new pv.Task();
         Frame frame = null;
         WrapPanel panel1 = null;
-
+        private string GetSection(DateTime dt)
+        {
+            Console.WriteLine(dt.ToShortTimeString());
+            switch (dt.ToShortTimeString())
+            {
+                case "19:20": return "晚一";
+                case "20:20": return "晚二";
+                case "21:20": return "晚三";
+                case "23:59": return "今日";
+                default: return string.Empty;
+            }
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             panel1.Children.Remove(frame);
@@ -45,20 +57,49 @@ namespace HomeworkManager
         /// <param name="bo"></param>
         private void TogglleButtoms(bool bo)
         {
+            if (!IsAnimationFinished && !BlockedAni)
+            {
+                //阻止并等待完成
+                BlockedAni = true;
+                return;
+            }
+            else if (!IsAnimationFinished)
+            {
+                return;
+            }
+
             if (bo)
             {
-                Animation.OpacityAnimation(Lesson_Clear, 100, 0, TimeSpan.FromSeconds(3.2), null);
-                Animation.OpacityAnimation(Lesson_Settings, 100, 0, TimeSpan.FromSeconds(3.5), null);
-                Animation.OpacityAnimation(slider, 100, 0, TimeSpan.FromSeconds(3), null);
+                IsAnimationFinished = false;
+                Animation.OpacityAnimation(Lesson_Clear, 100, 0, TimeSpan.FromSeconds(2.2), null);
+                Animation.OpacityAnimation(Lesson_Settings, 100, 0, TimeSpan.FromSeconds(2.5), null);
+                Animation.OpacityAnimation(slider, 100, 0, TimeSpan.FromSeconds(2), null);
+                Animation.XPositionAnimation(time, 300, 0, TimeSpan.FromSeconds(4), Animationfinished);
+
             }
             else
             {
-                Animation.OpacityAnimation(Lesson_Clear, 0, 100, TimeSpan.FromSeconds(2), null);
-                Animation.OpacityAnimation(Lesson_Settings, 0, 100, TimeSpan.FromSeconds(2.3), null);
-                Animation.OpacityAnimation(slider, 0, 100, TimeSpan.FromSeconds(1.7), null);
+
+                IsAnimationFinished = false;
+                Animation.OpacityAnimation(Lesson_Clear, 0, 100, TimeSpan.FromSeconds(3), null);
+                Animation.OpacityAnimation(Lesson_Settings, 0, 100, TimeSpan.FromSeconds(3.3), Animationfinished);
+                Animation.OpacityAnimation(slider, 0, 100, TimeSpan.FromSeconds(2.7), null);
+                Animation.XPositionAnimation(time, 0, 300, TimeSpan.FromSeconds(0.5), null);
+
             }
             bo = !bo;
+            BlockedAni = false;
 
+        }
+        bool BlockedAni = false;
+        bool IsAnimationFinished = true;
+        private void Animationfinished(object sender, EventArgs e)
+        {
+            IsAnimationFinished = true;
+            if (BlockedAni)
+            {
+                TogglleButtoms(true);
+            }
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -180,13 +221,13 @@ namespace HomeworkManager
 
         private void Page_MouseEnter(object sender, MouseEventArgs e)
         {
-            
+
 
         }
 
         private void Page_MouseLeave(object sender, MouseEventArgs e)
         {
-            
+
 
         }
 
@@ -237,7 +278,7 @@ namespace HomeworkManager
             {
                 if (this.IsLoaded)
                 {
-                    this.text.FontSize = 45 * (e.NewValue);
+                    this.text.FontSize = 50 * (e.NewValue);
                     UpdateHeight();
                 }
             }

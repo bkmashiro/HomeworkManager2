@@ -27,7 +27,7 @@ namespace HomeworkManager
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            string[] subjects = {"语文","数学","英语","物理","化学","技术","政治","地理" };
+            string[] subjects = {"语文","数学","英语","物理","化学","技术","政治","历史","地理" };
             foreach (var subj in subjects)
             {
                 string hint = subj + "课代表，你还没有确认今天的作业。";

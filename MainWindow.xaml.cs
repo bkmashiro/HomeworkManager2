@@ -1,19 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Forms;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace HomeworkManager
 {
@@ -38,7 +25,7 @@ namespace HomeworkManager
         private void Homework_Click(object sender, RoutedEventArgs e)
         {
             //NavigationWindow window = new NavigationWindow();
-            if (cont_h==null)
+            if (cont_h == null)
             {
                 homework h = new homework();
                 MainPage.Content = h;
@@ -135,6 +122,13 @@ namespace HomeworkManager
 
         private void flip_Click(object sender, RoutedEventArgs e)
         {
+            DoFlip();
+            IsDragMode = false;
+
+        }
+
+        private void DoFlip()
+        {
             flip.IsEnabled = false;
             if (flipped)
             {
@@ -147,15 +141,98 @@ namespace HomeworkManager
             {
                 Animation.YPositionAnimation(dk, 0, 600, TimeSpan.FromMilliseconds(500), null);
                 //Animation.YPositionAnimation(MainPage, 0, 600, TimeSpan.FromMilliseconds(500), null);
-                Animation.RotateAnimation(vb_flip, -180, 0, TimeSpan.FromMilliseconds(500),comp1 );
+                Animation.RotateAnimation(vb_flip, -180, 0, TimeSpan.FromMilliseconds(500), comp1);
             }
             flipped = !flipped;
         }
 
-        private void comp1(object sender ,EventArgs e)
+        private void DoFlip(bool b)
         {
-            flip.IsEnabled = true;
+            if (b)
+            {
+                if (!flipped)
+                {
+                    Animation.YPositionAnimation(dk, 600, 0, TimeSpan.FromMilliseconds(500), null);
+                    //Animation.YPositionAnimation(MainPage, 600, 0, TimeSpan.FromMilliseconds(500), null);
+                    Animation.RotateAnimation(vb_flip, 0, -180, TimeSpan.FromMilliseconds(500), comp1);
+                    flipped = !flipped;
+                }
+
+            }
+            else
+            {
+                if (flipped)
+                {
+                    Animation.YPositionAnimation(dk, 0, 600, TimeSpan.FromMilliseconds(500), null);
+                    //Animation.YPositionAnimation(MainPage, 0, 600, TimeSpan.FromMilliseconds(500), null);
+                    Animation.RotateAnimation(vb_flip, -180, 0, TimeSpan.FromMilliseconds(500), comp1);
+                    flipped = !flipped;
+                }
+            }
         }
 
+        private void comp1(object sender, EventArgs e)
+        {
+            flip.IsEnabled = true;
+            IsLeftMouseDown = false;
+        }
+
+
+        private void MainPage_MouseMove_1(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+
+        }
+
+        private void MainPage_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            IsLeftMouseDown = false;
+
+        }
+        bool IsLeftMouseDown = false;
+        double MouseY = 0;
+        bool IsDragMode = false;
+        private void MainPage_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void MainPage_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void MainPage_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            IsLeftMouseDown = true;
+            IsDragMode = true;
+            MouseY = Mouse.GetPosition(e.Source as FrameworkElement).Y;
+        }
+
+        private void MainPage_PreviewMouseMove(object sender, MouseEventArgs e)
+        {
+            if (IsDragMode)
+            {
+
+                if (IsLeftMouseDown && (MouseY - Mouse.GetPosition(e.Source as FrameworkElement).Y) > 50)
+                {
+                    DoFlip(true);
+                    IsLeftMouseDown = false;
+
+
+                }
+                else if (IsLeftMouseDown && (MouseY - Mouse.GetPosition(e.Source as FrameworkElement).Y) < -50)
+                {
+                    DoFlip(false);
+                    IsLeftMouseDown = false;
+                }
+            }
+
+        }
+
+        private void MainPage_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            IsLeftMouseDown = false;
+
+        }
     }
 }

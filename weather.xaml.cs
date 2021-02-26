@@ -23,9 +23,13 @@ namespace HomeworkManager
     /// </summary>
     public partial class weather : Page
     {
-        public weather()
+		Panel panel1;
+		Frame frame1;
+		public weather(Panel panel,Frame frame)
         {
             InitializeComponent();
+			panel1 = panel;
+			frame1 = frame;
         }
 
 
@@ -161,6 +165,19 @@ namespace HomeworkManager
 				}));
 			}));
 			task.Start();
+        }
+
+        private void Page_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+				panel1.Children.Remove(frame1);
+            }
+            catch (Exception ex)
+            {
+				MessageBox.Show(ex.Message);
+                throw;
+            }
         }
     }
 }

@@ -94,11 +94,17 @@ namespace HomeworkManager
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             Flop();
+            togglebtn.IsEnabled = false;
+
         }
 
         private void InvisibleFolding(object sender, EventArgs e)
         {
             plusbtnholder.Visibility = Visibility.Collapsed;
+        }
+        private void FoldingFinished(object sender, EventArgs e)
+        {
+            togglebtn.IsEnabled = true;
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
@@ -152,7 +158,7 @@ namespace HomeworkManager
             WrapPanel wrap = GetPanel();
             Frame frame = new Frame();
             frame.Width = 960;
-            weather wea = new weather();
+            weather wea = new weather(wrap,frame);
             frame.Content = wea;
             wrap.Children.Add(frame);
         }
@@ -165,6 +171,7 @@ namespace HomeworkManager
             ringing ringing = new ringing();
             frame.Content = ringing;
             wrap.Children.Add(frame);
+            
         }
         private void Flop()
         {
@@ -173,27 +180,78 @@ namespace HomeworkManager
             if (isFolding)
             {
                 plusbtnholder.Visibility = Visibility.Visible;
-                Animation.YPositionAnimation(plusbtnholder, 0, -250, TimeSpan.FromMilliseconds(500), null);
-                Animation.OpacityAnimation(plusbtnholder, 0, 1, TimeSpan.FromMilliseconds(500), null);
-                Animation.RotateAnimation(flopper, 0, -180, TimeSpan.FromMilliseconds(800), null);
+                Animation.YPositionAnimation(plusbtnholder, 0, -250, TimeSpan.FromMilliseconds(200), FoldingFinished);
+                Animation.OpacityAnimation(plusbtnholder, 0, 1, TimeSpan.FromMilliseconds(200), null);
+               // Animation.RotateAnimation(flopper, 0, -180, TimeSpan.FromMilliseconds(800), null);
                 foreach (var item in plusbtnholder.Children)
                 {
-                    Animation.WRotateAnimation((UIElement)item, -random.Next(30, 50), 0, TimeSpan.FromMilliseconds(random.Next(400, 600)), null);
+                    Animation.WRotateAnimation((UIElement)item, -random.Next(30, 50), 0, TimeSpan.FromMilliseconds(200), null);
                 }
             }
             else
             {
                 plusbtnholder.Visibility = Visibility.Visible;
-                Animation.YPositionAnimation(plusbtnholder, -250, 0, TimeSpan.FromMilliseconds(500), null);
-                Animation.OpacityAnimation(plusbtnholder, 1, 0, TimeSpan.FromMilliseconds(500), null);
-                Animation.RotateAnimation(flopper, 360, 0, TimeSpan.FromMilliseconds(800), null);
+                Animation.YPositionAnimation(plusbtnholder, -250, 0, TimeSpan.FromMilliseconds(200), FoldingFinished);
+                Animation.OpacityAnimation(plusbtnholder, 1, 0, TimeSpan.FromMilliseconds(200), null);
+                //Animation.RotateAnimation(flopper, 360, 0, TimeSpan.FromMilliseconds(800), null);
 
                 foreach (var item in plusbtnholder.Children)
                 {
-                    Animation.WRotateAnimation((UIElement)item, 0, -random.Next(30, 50), TimeSpan.FromMilliseconds(random.Next(400, 600)), InvisibleFolding);
+                    Animation.WRotateAnimation((UIElement)item, 0, -random.Next(30, 50), TimeSpan.FromMilliseconds(200), InvisibleFolding);
                 }
             }
             isFolding = !isFolding;
+        }
+
+        int WaitFlopTime = 400;
+        private void Flop(object sender, RoutedEventArgs e)
+        {
+            Random random = new Random();
+            togglebtn.IsChecked = !togglebtn.IsChecked;
+
+            if (isFolding)
+            {
+                plusbtnholder.Visibility = Visibility.Visible;
+                Animation.YPositionAnimation(plusbtnholder, 0, -250, TimeSpan.FromMilliseconds(WaitFlopTime), FoldingFinished);
+                Animation.OpacityAnimation(plusbtnholder, 0, 1, TimeSpan.FromMilliseconds(WaitFlopTime), null);
+                // Animation.RotateAnimation(flopper, 0, -180, TimeSpan.FromMilliseconds(800), null);
+                foreach (var item in plusbtnholder.Children)
+                {
+                    Animation.WRotateAnimation((UIElement)item, -random.Next(30, 50), 0, TimeSpan.FromMilliseconds(WaitFlopTime), null);
+                }
+            }
+            else
+            {
+                plusbtnholder.Visibility = Visibility.Visible;
+                Animation.YPositionAnimation(plusbtnholder, -250, 0, TimeSpan.FromMilliseconds(WaitFlopTime), FoldingFinished);
+                Animation.OpacityAnimation(plusbtnholder, 1, 0, TimeSpan.FromMilliseconds(WaitFlopTime), null);
+                //Animation.RotateAnimation(flopper, 360, 0, TimeSpan.FromMilliseconds(800), null);
+
+                foreach (var item in plusbtnholder.Children)
+                {
+                    Animation.WRotateAnimation((UIElement)item, 0, -random.Next(30, 50), TimeSpan.FromMilliseconds(WaitFlopTime), InvisibleFolding);
+                }
+            }
+            isFolding = !isFolding;
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in plusbtnholder.Children)
+            {
+                if (item.GetType()==typeof(System.Windows.Controls.Button))
+                {
+                    (item as System.Windows.Controls.Button).Click += Flop;
+
+                }
+            }
+            //Flop();
+
+        }
+
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

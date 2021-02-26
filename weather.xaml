@@ -7,7 +7,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="HomeworkManager.weather"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="weather" Width="960" Loaded="Page_Loaded">
+      Title="weather" Width="960" Loaded="Page_Loaded" MouseDown="Page_MouseDown">
 
     <Grid Width="960" ClipToBounds="True">
         <TextBlock Margin="10,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="69" FontSize="40" Text="天气预报与灾害预警"/>

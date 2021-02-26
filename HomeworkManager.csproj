@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.props" Condition="Exists('packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -39,22 +40,103 @@
   <PropertyGroup>
     <ApplicationIcon>favicon-20201011113937453.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Emoji.Wpf, Version=0.2.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Emoji.Wpf.0.2.5\lib\net40\Emoji.Wpf.dll</HintPath>
+    <Reference Include="BluwolfIcons, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\BluwolfIcons.1.0.1\lib\net461\BluwolfIcons.dll</HintPath>
     </Reference>
-    <Reference Include="MaterialDesignColors, Version=1.2.7.1979, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
-      <HintPath>packages\MaterialDesignColors.1.2.7\lib\net45\MaterialDesignColors.dll</HintPath>
+    <Reference Include="ControlzEx, Version=5.0.0.0, Culture=neutral, PublicKeyToken=69f1c32f803d307e, processorArchitecture=MSIL">
+      <HintPath>packages\ControlzEx.5.0.0\lib\net462\ControlzEx.dll</HintPath>
     </Reference>
-    <Reference Include="MaterialDesignThemes.Wpf, Version=3.2.0.1979, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
-      <HintPath>packages\MaterialDesignThemes.3.2.0\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    <Reference Include="Dragablz, Version=0.0.3.223, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Dragablz.0.0.3.223\lib\net45\Dragablz.dll</HintPath>
+    </Reference>
+    <Reference Include="Emoji.Wpf, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Emoji.Wpf.0.3.0\lib\net40\Emoji.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Humanizer, Version=2.8.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
+      <HintPath>packages\Humanizer.Core.2.8.26\lib\netstandard2.0\Humanizer.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.AvalonEdit, Version=6.0.1.278, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
+      <HintPath>packages\AvalonEdit.6.0.1\lib\net45\ICSharpCode.AvalonEdit.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=2.0.0.0, Culture=neutral, PublicKeyToken=51482d6f650b2b3f, processorArchitecture=MSIL">
+      <HintPath>packages\MahApps.Metro.2.4.4\lib\net47\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=2.0.0.2422, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialDesignColors.2.0.0\lib\net452\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.MahApps, Version=0.1.6.2422, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialDesignThemes.MahApps.0.1.6\lib\net452\MaterialDesignThemes.MahApps.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=4.0.0.2422, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialDesignThemes.4.0.0\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Build" />
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.Build.Tasks.v4.0" />
+    <Reference Include="Microsoft.Build.Utilities.v4.0" />
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Xaml.Behaviors.Wpf.1.1.31\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="ShowMeTheXAML, Version=2.0.0.62, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ShowMeTheXAML.2.0.0\lib\net472\ShowMeTheXAML.dll</HintPath>
+    </Reference>
+    <Reference Include="ShowMeTheXAML.AvalonEdit, Version=2.0.0.62, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ShowMeTheXAML.AvalonEdit.2.0.0\lib\net472\ShowMeTheXAML.AvalonEdit.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -66,10 +148,10 @@
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="Typography.GlyphLayout, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Emoji.Wpf.0.2.5\lib\net40\Typography.GlyphLayout.dll</HintPath>
+      <HintPath>packages\Emoji.Wpf.0.3.0\lib\net40\Typography.GlyphLayout.dll</HintPath>
     </Reference>
     <Reference Include="Typography.OpenFont, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Emoji.Wpf.0.2.5\lib\net40\Typography.OpenFont.dll</HintPath>
+      <HintPath>packages\Emoji.Wpf.0.3.0\lib\net40\Typography.OpenFont.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -94,6 +176,9 @@
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="thank.xaml.cs">
+      <DependentUpon>thank.xaml</DependentUpon>
     </Compile>
     <Compile Include="weather.xaml.cs">
       <DependentUpon>weather.xaml</DependentUpon>
@@ -146,6 +231,10 @@
     <Page Include="Settings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="thank.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="weather.xaml">
       <SubType>Designer</SubType>
@@ -209,12 +298,21 @@
   <ItemGroup>
     <Resource Include="help.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
+    <Analyzer Include="packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets'))" />
+    <Error Condition="!Exists('packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.props'))" />
+    <Error Condition="!Exists('packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.targets'))" />
+    <Error Condition="!Exists('packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets'))" />
+    <Error Condition="!Exists('packages\ShowMeTheXAML.MSBuild.2.0.0\build\net472\ShowMeTheXAML.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\ShowMeTheXAML.MSBuild.2.0.0\build\net472\ShowMeTheXAML.MSBuild.targets'))" />
   </Target>
+  <Import Project="packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.targets" Condition="Exists('packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.targets')" />
+  <Import Project="packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
+  <Import Project="packages\ShowMeTheXAML.MSBuild.2.0.0\build\net472\ShowMeTheXAML.MSBuild.targets" Condition="Exists('packages\ShowMeTheXAML.MSBuild.2.0.0\build\net472\ShowMeTheXAML.MSBuild.targets')" />
 </Project>
