@@ -253,5 +253,12 @@ namespace HomeworkManager
         {
 
         }
+
+        private void addlesson_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            AdvancedAddlesson ads = new AdvancedAddlesson(GetPanel());
+            ads.WindowState = WindowState.Normal;
+            ads.Show();
+        }
     }
 }

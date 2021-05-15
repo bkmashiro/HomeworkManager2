@@ -1,125 +1,235 @@
-﻿<Page xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"  x:Class="HomeworkManager.homework"
+﻿<Page xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      x:Class="HomeworkManager.homework"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:materialDesignConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
       xmlns:local="clr-namespace:HomeworkManager"
-      xmlns:system ="clr-namespace:System;assembly=mscorlib"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        Background="{DynamicResource MaterialDesignPaper}"
-        TextElement.FontWeight="Medium"
-        TextElement.FontSize="14"
-        FontFamily="{materialDesign:MaterialDesignFont}"
-      
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="homework" SizeChanged="Page_SizeChanged" Loaded="Page_Loaded">
-
-    <Grid DockPanel.Dock="Top" Background="#FFEAE0E0">
+      xmlns:system="clr-namespace:System;assembly=mscorlib"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      Background="{DynamicResource MaterialDesignPaper}"
+      TextElement.FontWeight="Medium"
+      TextElement.FontSize="14"
+      FontFamily="{materialDesign:MaterialDesignFont}"
+      mc:Ignorable="d"
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      Title="homework"
+      SizeChanged="Page_SizeChanged"
+      Loaded="Page_Loaded">
+    <Grid DockPanel.Dock="Top"
+          Background="#FFEAE0E0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition />
         </Grid.RowDefinitions>
-
-        <WrapPanel x:Name="HomeWorkHolder1" Orientation="Vertical" d:LayoutOverrides="LeftMargin, RightMargin" Margin="0,0,0,-2324" />
-        <WrapPanel x:Name="HomeWorkHolder2" Orientation="Vertical" Margin="0,0,0,-2324" d:LayoutOverrides="LeftMargin, RightMargin" Grid.Column="1" />
-        <Button x:Name="addlesson" Margin="0,0,10,10" Width="55" Style="{DynamicResource MaterialDesignFloatingActionDarkButton}" Height="55" FontSize="35" Click="Button_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" RenderTransformOrigin="0.426,0.521" Grid.Column="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+        <WrapPanel x:Name="HomeWorkHolder1"
+                   Orientation="Vertical"
+                   d:LayoutOverrides="LeftMargin, RightMargin"
+                   Margin="0,0,0,-2324" />
+        <WrapPanel x:Name="HomeWorkHolder2"
+                   Orientation="Vertical"
+                   Margin="0,0,0,-2324"
+                   d:LayoutOverrides="LeftMargin, RightMargin"
+                   Grid.Column="1" />
+        <Button x:Name="addlesson"
+                Margin="0,0,10,10"
+                Width="55"
+                Style="{DynamicResource MaterialDesignFloatingActionDarkButton}"
+                Height="55"
+                FontSize="35"
+                Click="Button_Click"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                RenderTransformOrigin="0.426,0.521"
+                Grid.Column="1"
+                d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
             <Viewbox Width="30"
-                                         Height="30">
+                     Height="30">
                 <Canvas Width="24"
-                                            Height="24">
+                        Height="24">
                     <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
-                                              Fill="White" />
+                          Fill="White" />
                 </Canvas>
             </Viewbox>
         </Button>
-
-        <Button x:Name="touchwrite" Margin="0,0,70,10" Width="55" Style="{DynamicResource MaterialDesignFloatingActionDarkButton}" Height="55" FontSize="35" Click="Button_Click_2" HorizontalAlignment="Right" VerticalAlignment="Bottom" RenderTransformOrigin="0.426,0.521" Grid.Column="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" Background="#FF612F73" BorderBrush="#FF76368D">
+        <Button x:Name="touchwrite"
+                Margin="0,0,70,10"
+                Width="55"
+                Style="{DynamicResource MaterialDesignFloatingActionDarkButton}"
+                Height="55"
+                FontSize="35"
+                Click="Button_Click_2"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                RenderTransformOrigin="0.426,0.521"
+                Grid.Column="1"
+                d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
+                Background="#FF612F73"
+                BorderBrush="#FF76368D">
             <Viewbox Width="30"
-                                         Height="30">
+                     Height="30">
                 <Canvas Width="24"
-                                            Height="24">
+                        Height="24">
                     <Path Data="M4.59,6.89C5.29,6.18 6,5.54 6.3,5.67C6.8,5.87 6.3,6.7 6,7.19C5.75,7.61 3.14,11.08 3.14,13.5C3.14,14.78 3.62,15.84 4.5,16.5C5.23,17.04 6.22,17.21 7.12,16.94C8.19,16.63 9.07,15.54 10.18,14.17C11.39,12.68 13,10.73 14.26,10.73C15.89,10.73 15.91,11.74 16,12.5C12.24,13.16 10.64,16.19 10.64,17.89C10.64,19.59 12.08,21 13.85,21C15.5,21 18.14,19.65 18.54,14.88H21V12.38H18.53C18.38,10.73 17.44,8.18 14.5,8.18C12.25,8.18 10.32,10.09 9.56,11C9,11.75 7.5,13.5 7.27,13.74C7,14.04 6.59,14.58 6.16,14.58C5.71,14.58 5.44,13.75 5.8,12.66C6.15,11.57 7.2,9.8 7.65,9.14C8.43,8 8.95,7.22 8.95,5.86C8.95,3.69 7.31,3 6.44,3C5.12,3 3.97,4 3.72,4.25C3.36,4.61 3.06,4.91 2.84,5.18L4.59,6.89M13.88,18.55C13.57,18.55 13.14,18.29 13.14,17.83C13.14,17.23 13.87,15.63 16,15.07C15.71,17.76 14.58,18.55 13.88,18.55Z"
-                                              Fill="White" Height="22" Stretch="Fill" Width="22.133" Canvas.Left="1.867" Canvas.Top="2" />
+                          Fill="White"
+                          Height="22"
+                          Stretch="Fill"
+                          Width="22.133"
+                          Canvas.Left="1.867"
+                          Canvas.Top="2" />
                 </Canvas>
             </Viewbox>
         </Button>
         <ToggleButton x:Name="togglebtn"
-  Style="{StaticResource MaterialDesignSwitchToggleButton}"
-  ToolTip="固定工具栏" Height="26" VerticalAlignment="Bottom" Grid.Column="1" Margin="0,0,134,24" HorizontalAlignment="Right" Width="51" RenderTransformOrigin="0.5,0.5" Click="Button_Click_3" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+                      Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                      ToolTip="固定工具栏"
+                      Height="26"
+                      VerticalAlignment="Bottom"
+                      Grid.Column="1"
+                      Margin="0,0,134,24"
+                      HorizontalAlignment="Right"
+                      Width="51"
+                      RenderTransformOrigin="0.5,0.5"
+                      Click="Button_Click_3"
+                      d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
             <ToggleButton.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="2" ScaleY="2"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
+                    <ScaleTransform ScaleX="2"
+                                    ScaleY="2" />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform />
                 </TransformGroup>
             </ToggleButton.RenderTransform>
-            <materialDesign:PackIcon
-    Kind="Pin"
-    RenderTransformOrigin=".5,.5" Foreground="#FF536DE4">
+            <materialDesign:PackIcon Kind="Pin"
+                                     RenderTransformOrigin=".5,.5"
+                                     Foreground="#FF536DE4">
                 <materialDesign:PackIcon.RenderTransform>
-                    <RotateTransform
-        Angle="45" />
+                    <RotateTransform Angle="45" />
                 </materialDesign:PackIcon.RenderTransform>
             </materialDesign:PackIcon>
             <materialDesign:ToggleButtonAssist.OnContent>
-                <materialDesign:PackIcon
-      Kind="Pin" />
+                <materialDesign:PackIcon Kind="Pin" />
             </materialDesign:ToggleButtonAssist.OnContent>
         </ToggleButton>
-        <Grid x:Name="plusbtnholder" Visibility="Visible" Margin="0,0,141,-464" Height="529" VerticalAlignment="Bottom" d:LayoutOverrides="VerticalAlignment" Grid.Column="1" HorizontalAlignment="Right" Width="65">
-            <Button Margin="10,10,0,0" Width="55" Style="{DynamicResource MaterialDesignFloatingActionDarkButton}" Height="55" FontSize="35" Click="Button_Click_4" VerticalAlignment="Top" RenderTransformOrigin="0.426,0.521" Background="#FF3E2F73" BorderBrush="#FF364A8D" HorizontalAlignment="Left">
+        <Grid x:Name="plusbtnholder"
+              Visibility="Visible"
+              Margin="0,0,141,-464"
+              Height="529"
+              VerticalAlignment="Bottom"
+              d:LayoutOverrides="VerticalAlignment"
+              Grid.Column="1"
+              HorizontalAlignment="Right"
+              Width="65">
+            <Button Margin="10,10,0,0"
+                    Width="55"
+                    Style="{DynamicResource MaterialDesignFloatingActionDarkButton}"
+                    Height="55"
+                    FontSize="35"
+                    Click="Button_Click_4"
+                    VerticalAlignment="Top"
+                    RenderTransformOrigin="0.426,0.521"
+                    Background="#FF3E2F73"
+                    BorderBrush="#FF364A8D"
+                    HorizontalAlignment="Left">
                 <Viewbox Width="30"
-                Height="30">
+                         Height="30">
                     <Canvas Width="24"
-                    Height="24">
+                            Height="24">
                         <Path Data="M5,3A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H14.09C14.03,20.67 14,20.34 14,20C14,19.32 14.12,18.64 14.35,18H5L8.5,13.5L11,16.5L14.5,12L16.73,14.97C17.7,14.34 18.84,14 20,14C20.34,14 20.67,14.03 21,14.09V5C21,3.89 20.1,3 19,3H5M19,16V19H16V21H19V24H21V21H24V19H21V16H19Z"
-                        Fill="White" />
+                              Fill="White" />
                     </Canvas>
                 </Viewbox>
             </Button>
-            <Button Margin="10,70,0,0" Width="55" Style="{DynamicResource MaterialDesignFloatingActionDarkButton}" Height="55" FontSize="35" Click="Button_Click_5" VerticalAlignment="Top" RenderTransformOrigin="0.426,0.521" Background="#FF3E2F73" BorderBrush="#FF364A8D" HorizontalAlignment="Left">
+            <Button Margin="10,70,0,0"
+                    Width="55"
+                    Style="{DynamicResource MaterialDesignFloatingActionDarkButton}"
+                    Height="55"
+                    FontSize="35"
+                    Click="Button_Click_5"
+                    VerticalAlignment="Top"
+                    RenderTransformOrigin="0.426,0.521"
+                    Background="#FF3E2F73"
+                    BorderBrush="#FF364A8D"
+                    HorizontalAlignment="Left">
                 <Viewbox Width="30"
-                    Height="30">
+                         Height="30">
                     <Canvas Width="24"
-                        Height="24">
+                            Height="24">
                         <Path Data="M12.74,5.47C15.1,6.5 16.35,9.03 15.92,11.46C17.19,12.56 18,14.19 18,16V16.17C18.31,16.06 18.65,16 19,16A3,3 0 0,1 22,19A3,3 0 0,1 19,22H6A4,4 0 0,1 2,18A4,4 0 0,1 6,14H6.27C5,12.45 4.6,10.24 5.5,8.26C6.72,5.5 9.97,4.24 12.74,5.47M11.93,7.3C10.16,6.5 8.09,7.31 7.31,9.07C6.85,10.09 6.93,11.22 7.41,12.13C8.5,10.83 10.16,10 12,10C12.7,10 13.38,10.12 14,10.34C13.94,9.06 13.18,7.86 11.93,7.3M13.55,3.64C13,3.4 12.45,3.23 11.88,3.12L14.37,1.82L15.27,4.71C14.76,4.29 14.19,3.93 13.55,3.64M6.09,4.44C5.6,4.79 5.17,5.19 4.8,5.63L4.91,2.82L7.87,3.5C7.25,3.71 6.65,4.03 6.09,4.44M18,9.71C17.91,9.12 17.78,8.55 17.59,8L19.97,9.5L17.92,11.73C18.03,11.08 18.05,10.4 18,9.71M3.04,11.3C3.11,11.9 3.24,12.47 3.43,13L1.06,11.5L3.1,9.28C3,9.93 2.97,10.61 3.04,11.3M19,18H16V16A4,4 0 0,0 12,12A4,4 0 0,0 8,16H6A2,2 0 0,0 4,18A2,2 0 0,0 6,20H19A1,1 0 0,0 20,19A1,1 0 0,0 19,18Z"
-                            Fill="White" />
+                              Fill="White" />
                     </Canvas>
                 </Viewbox>
             </Button>
-            <Button Margin="10,130,0,119" Width="55" Style="{DynamicResource MaterialDesignFloatingActionDarkButton}" Height="55" FontSize="35" Click="Button_Click_7" RenderTransformOrigin="0.426,0.521" Background="#FF3E2F73" BorderBrush="#FF364A8D" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Button Margin="10,130,0,119"
+                    Width="55"
+                    Style="{DynamicResource MaterialDesignFloatingActionDarkButton}"
+                    Height="55"
+                    FontSize="35"
+                    Click="Button_Click_7"
+                    RenderTransformOrigin="0.426,0.521"
+                    Background="#FF3E2F73"
+                    BorderBrush="#FF364A8D"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top">
                 <Viewbox Width="30"
-                    Height="30">
+                         Height="30">
                     <Canvas Width="24"
-                        Height="24">
+                            Height="24">
                         <Path Data="M3,17V19H9V17H3M3,5V7H13V5H3M13,21V19H21V17H13V15H11V21H13M7,9V11H3V13H7V15H9V9H7M21,13V11H11V13H21M15,9H17V7H21V5H17V3H15V9Z"
-                            Fill="White" />
+                              Fill="White" />
                     </Canvas>
                 </Viewbox>
             </Button>
-            <Button Margin="10,190,0,0" Width="55" Style="{DynamicResource MaterialDesignFloatingActionDarkButton}" Height="55" FontSize="35" Click="Button_Click_6" RenderTransformOrigin="0.426,0.521" Background="#FF3E2F73" BorderBrush="#FF364A8D" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Button Margin="10,190,0,0"
+                    Width="55"
+                    Style="{DynamicResource MaterialDesignFloatingActionDarkButton}"
+                    Height="55"
+                    FontSize="35"
+                    Click="Button_Click_6"
+                    RenderTransformOrigin="0.426,0.521"
+                    Background="#FF3E2F73"
+                    BorderBrush="#FF364A8D"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top">
                 <Viewbox Width="30"
-                    Height="30">
+                         Height="30">
                     <Canvas Width="24"
-                        Height="24">
+                            Height="24">
                         <Path Data="M10,21H14A2,2 0 0,1 12,23A2,2 0 0,1 10,21M21,19V20H3V19L5,17V11C5,7.9 7.03,5.17 10,4.29C10,4.19 10,4.1 10,4A2,2 0 0,1 12,2A2,2 0 0,1 14,4C14,4.1 14,4.19 14,4.29C16.97,5.17 19,7.9 19,11V17L21,19M17,11A5,5 0 0,0 12,6A5,5 0 0,0 7,11V18H17V11M19.75,3.19L18.33,4.61C20.04,6.3 21,8.6 21,11H23C23,8.07 21.84,5.25 19.75,3.19M1,11H3C3,8.6 3.96,6.3 5.67,4.61L4.25,3.19C2.16,5.25 1,8.07 1,11Z"
-                            Fill="White" />
+                              Fill="White" />
                     </Canvas>
                 </Viewbox>
             </Button>
         </Grid>
-
-
-
+        <Button x:Name="addlesson_Copy"
+                Margin="0,0,10,70"
+                Width="55"
+                Style="{DynamicResource MaterialDesignFloatingActionLightButton}"
+                Height="55"
+                FontSize="35"
+                Click="addlesson_Copy_Click"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                RenderTransformOrigin="0.426,0.521"
+                Grid.Column="1"
+                d:LayoutOverrides="LeftMargin, RightMargin">
+            <Viewbox Width="30"
+                     Height="30">
+                <Canvas Width="24"
+                        Height="24">
+                    <Path Data="M9 12C8.4 12 8 11.6 8 11S8.4 10 9 10 10 10.4 10 11 9.6 12 9 12M22 12H20C20 8.7 16.4 6 12 6C11.2 6 10.3 6.1 9.6 6.3L7 5V7.3C5.5 8.2 4.5 9.5 4.1 11H2V15H5.1C5.6 15.6 6.2 16.2 7 16.7V20H9V17.6C9.9 17.9 10.9 18 12 18S14.1 17.8 15 17.6V20H17V16.7C18.1 16 19 15.1 19.5 14H22V12M12 16C8.7 16 6 14.2 6 12S8.7 8 12 8 18 9.8 18 12 15.3 16 12 16Z"
+                          Fill="White" />
+                </Canvas>
+            </Viewbox>
+        </Button>
     </Grid>
-
 </Page>
 
 

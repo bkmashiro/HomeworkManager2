@@ -1,0 +1,217 @@
+﻿<Window x:Class="HomeworkManager.AdvancedAddlesson"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HomeworkManager"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="AdvancedAddlesson"
+        Height="800"
+        Width="1200"
+        Loaded="Window_Loaded">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="89819137_p0.jpg"
+                        Opacity="0.4" />
+        </Grid.Background>
+        <materialDesign:Transitioner SelectedIndex="0">
+            <materialDesign:Transitioner.InputBindings>
+                <KeyBinding Key="Left"
+                            Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}" />
+                <KeyBinding Key="Right"
+                            Command="{x:Static materialDesign:Transitioner.MoveNextCommand}" />
+            </materialDesign:Transitioner.InputBindings>
+            <Grid>
+                <Button x:Name="btn1"
+                        Click="btn1_Click"
+                        Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                        Margin="0,0,19,134"
+                        VerticalAlignment="Bottom"
+                        d:LayoutOverrides="Width, Height"
+                        HorizontalAlignment="Right"
+                        Background="#FF5FC568"
+                        RenderTransformOrigin="0.5,0.5">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="1.2"
+                                            ScaleY="1.2" />
+                            <SkewTransform />
+                            <RotateTransform />
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <Viewbox Width="48"
+                             Height="48">
+                        <Canvas Width="24"
+                                Height="24">
+                            <Path Fill="#FFE4E4E4"
+                                  Data="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" />
+                        </Canvas>
+                    </Viewbox>
+                </Button>
+                <Button x:Name="btn2"
+                        Click="Button_Click4"
+                        Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                        Margin="0,0,21,53"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Right"
+                        Background="#FFF92E24"
+                        d:LayoutOverrides="Width, Height"
+                        RenderTransformOrigin="0.5,0.5">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="1.2"
+                                            ScaleY="1.2" />
+                            <SkewTransform />
+                            <RotateTransform />
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <Viewbox Width="48"
+                             Height="48">
+                        <Canvas Width="24"
+                                Height="24">
+                            <Path Fill="#FFE4E4E4"
+                                  Data="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" />
+                        </Canvas>
+                    </Viewbox>
+                </Button>
+                <ComboBox Name="Subjects"
+                          HorizontalAlignment="Left"
+                          Margin="81,88,0,0"
+                          VerticalAlignment="Top"
+                          Width="120"
+                          SelectionChanged="Subjects_SelectionChanged"
+                          Height="27"
+                          Foreground="Black" />
+                <TextBlock Margin="10,10,10,0"
+                           TextWrapping="Wrap"
+                           Text="高级样式编辑器 - 测试"
+                           VerticalAlignment="Top"
+                           Height="70"
+                           FontSize="50"
+                           FontStyle="Italic"
+                           FontWeight="Bold" />
+                <ListBox Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineListBox}"
+                         x:Name="RadioButtonGroupChoiceChipPrimaryOutline"
+                         Margin="84,0,10,299"
+                         Height="45"
+                         VerticalAlignment="Bottom"
+                         SelectionChanged="RadioButtonGroupChoiceChipPrimaryOutline_SelectionChanged">
+                    <ListBoxItem IsSelected="True"
+                                 Content="经典" />
+                    <ListBoxItem Content="二次元" />
+                    <ListBoxItem Content="卡片" />
+                    <ListBoxItem Content="强调" />
+                </ListBox>
+                <MediaElement HorizontalAlignment="Left"
+                              Margin="84,0,0,153"
+                              Width="257"
+                              Height="141"
+                              VerticalAlignment="Bottom"
+                              />
+                <Button Style="{StaticResource MaterialDesignIconButton}"
+                        ToolTip="添加背景图"
+                        Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                        Margin="346,0,0,246"
+                        HorizontalAlignment="Left"
+                        d:LayoutOverrides="Width, Height"
+                        VerticalAlignment="Bottom"
+                        Click="Button_Click">
+                    <materialDesign:PackIcon Kind="Plus" />
+                </Button>
+                <Button Content="清空"
+                        HorizontalAlignment="Left"
+                        Margin="455,278,0,0"
+                        Width="75"
+                        VerticalAlignment="Top"
+                        d:LayoutOverrides="Height"
+                        Background="#FF6D89D3" />
+                <TextBox x:Name="homeworklist1"
+                         HorizontalAlignment="Left"
+                         Height="140"
+                         Margin="84,138,0,0"
+                         VerticalAlignment="Top"
+                         Width="446"
+                         Background="#FFF1D4FF"></TextBox>
+                <Button Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
+                        Width="102"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,10,213"
+                        VerticalAlignment="Bottom"
+                        d:LayoutOverrides="Height"
+                        Background="#FF007BD6">NEXT</Button>
+                <ListBox Style="{StaticResource MaterialDesignToolToggleFlatListBox}"
+                         SelectedIndex="0"
+                         Margin="81,320,0,0"
+                         Height="29"
+                         VerticalAlignment="Top"
+                         SelectionChanged="ListBox_SelectionChanged"
+                         Name="times">
+                    <ListBox.Resources>
+                        <Style TargetType="{x:Type ListBoxItem}"
+                               BasedOn="{StaticResource MaterialDesignToolToggleListBoxItem}">
+                            <Setter Property="Padding"
+                                    Value="4 6 4 6" />
+                        </Style>
+                    </ListBox.Resources>
+                    <ListBoxItem>
+                        <TextBlock Text="晚一" />
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <TextBlock Text="晚二" />
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <TextBlock Text="晚三" />
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <TextBlock Text="今日" />
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <TextBlock Text="长期" />
+                    </ListBoxItem>
+                </ListBox>
+                <ListBox x:Name="candi"
+                         Margin="535,138,0,349"
+                         Background="#FF6A6FE2"
+                         HorizontalAlignment="Left"
+                         Width="459"
+                         SelectionChanged="candi_SelectionChanged"
+                         Foreground="Black"
+                         
+                         />
+                <TextBlock HorizontalAlignment="Left"
+                           Margin="10,90,0,0"
+                           TextWrapping="Wrap"
+                           Text="课程"
+                           VerticalAlignment="Top"
+                           FontSize="20" />
+                <TextBlock HorizontalAlignment="Left"
+                           Margin="10,138,0,0"
+                           TextWrapping="Wrap"
+                           Text="内容"
+                           VerticalAlignment="Top"
+                           FontSize="20" />
+                <TextBlock HorizontalAlignment="Left"
+                           Margin="10,320,0,0"
+                           TextWrapping="Wrap"
+                           Text="时间"
+                           VerticalAlignment="Top"
+                           FontSize="20" />
+                <TextBlock HorizontalAlignment="Left"
+                           Margin="10,0,0,314"
+                           TextWrapping="Wrap"
+                           Text="风格"
+                           FontSize="20"
+                           VerticalAlignment="Bottom" />
+            </Grid>
+            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
+                <TextBlock>123</TextBlock>
+            </materialDesign:TransitionerSlide>
+            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
+                <TextBlock>456</TextBlock>
+            </materialDesign:TransitionerSlide>
+        </materialDesign:Transitioner>
+    </Grid>
+</Window>

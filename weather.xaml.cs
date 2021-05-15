@@ -158,7 +158,7 @@ namespace HomeworkManager
 				Console.WriteLine(s);
 				RootObject rb = JsonConvert.DeserializeObject<RootObject>(s);
 				main.Dispatcher.Invoke(new Action(() => {
-					main.Text = $" 地区:{rb.city} 明日天气:{rb.data[1].wea} 明日温度：{rb.data[1].tem}\r 日出时间:{rb.data[1].sunrise}日落时间:{rb.data[1].sunset}\r" +
+					main.Text = $" 地区:{rb.city} 明日天气:{rb.data[1].wea} 明日温度：{rb.data[1].tem1}/{rb.data[1].tem2}\r 日出时间:{rb.data[1].sunrise}日落时间:{rb.data[1].sunset}\r" +
 						$" 风向:{rb.data[1].win[1].ToString()+"/"+ rb.data[1].win[1].ToString()} 风速:{rb.data[1].win_speed}\r 湿度:{rb.data[1].humidity}能见度:{rb.data[1].visibility}\r 空气质量({rb.data[1].air_level}):{rb.data[1].air_tips}" +
 						$"气压:{rb.data[1].pressure}\r 气象监测与预警:{((rb.data[1].alarm.alarm_content == "") ? "无警报" : $"预警类别{rb.data[1].alarm.alarm_type} 预警等级{rb.data[1].alarm.alarm_level} 预警信息{rb.data[1].alarm.alarm_content}")}";
 

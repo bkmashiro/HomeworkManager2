@@ -41,7 +41,7 @@ namespace HomeworkManager
             this.Left = 1920 / 2-400;
             this.Top = 300;
             main.Visibility = Visibility.Visible;
-            customize.Visibility = Visibility.Collapsed;
+            //customize.Visibility = Visibility.Collapsed;
             others.Visibility = Visibility.Collapsed;
 
         }
@@ -464,24 +464,29 @@ namespace HomeworkManager
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
             //Console.WriteLine(11);
+
+            //collection_Customize = nav.Content;
+            
             main.Visibility = Visibility.Visible;
-            customize.Visibility = Visibility.Collapsed;
+            //customize.Visibility = Visibility.Collapsed;
             others.Visibility = Visibility.Collapsed;
         }
 
         private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
         {
-            customize.Visibility = Visibility.Visible;
+            //customize.Visibility = Visibility.Visible;
             main.Visibility = Visibility.Collapsed;
             others.Visibility = Visibility.Collapsed;
-
+            //nav.Content = new addl.customize();
         }
 
+        object collection_Customize = null;
         private void RadioButton_Checked_2(object sender, RoutedEventArgs e)
         {
             others.Visibility = Visibility.Visible;
             main.Visibility = Visibility.Collapsed;
-            customize.Visibility = Visibility.Collapsed;
+            //customize.Visibility = Visibility.Collapsed;
+            
 
 
         }

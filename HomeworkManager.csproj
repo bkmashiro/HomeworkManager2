@@ -162,12 +162,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="addl\customize.xaml.cs">
+      <DependentUpon>customize.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdvancedAddlesson.xaml.cs">
+      <DependentUpon>AdvancedAddlesson.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Animation.cs" />
+    <Compile Include="CustomizeLessonDemo.xaml.cs">
+      <DependentUpon>CustomizeLessonDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HandWrite.xaml.cs">
       <DependentUpon>HandWrite.xaml</DependentUpon>
     </Compile>
     <Compile Include="help.xaml.cs">
       <DependentUpon>help.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page1.xaml.cs">
+      <DependentUpon>Page1.xaml</DependentUpon>
     </Compile>
     <Compile Include="pv.cs" />
     <Compile Include="ringing.xaml.cs">
@@ -184,6 +196,18 @@
       <DependentUpon>weather.xaml</DependentUpon>
     </Compile>
     <Page Include="AddLesson.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="addl\customize.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdvancedAddlesson.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomizeLessonDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -224,6 +248,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Page1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ringing.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -301,6 +329,15 @@
   <ItemGroup>
     <Analyzer Include="packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
     <Analyzer Include="packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="89801112_p0.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="sun.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="89819137_p0.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
