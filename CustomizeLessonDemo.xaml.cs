@@ -23,6 +23,32 @@ namespace HomeworkManager
             homework_content.Text = content;
 
             dt = endtime;
+            if (dt.Hour==19&&dt.Minute==20)
+            {
+                endt.Text = "晚一";
+                lb.SelectedIndex = 0;
+            }
+            if (dt.Hour == 20 && dt.Minute == 20)
+            {
+                endt.Text = "晚二";
+                lb.SelectedIndex = 1;
+
+
+            }
+            if (dt.Hour == 21 && dt.Minute == 20)
+            {
+                endt.Text = "晚三";
+                lb.SelectedIndex = 2;
+
+
+            }
+            if (dt.Year > 2025)
+            {
+                endt.Text = "无限";
+                lb.SelectedIndex = 3;
+
+            }
+
         }
 
         DateTime dt;
@@ -33,7 +59,7 @@ namespace HomeworkManager
             Hideit();
             parent = wrapPanel;
             frm = frame;
-            img.Source = new BitmapImage(new Uri(image, UriKind.RelativeOrAbsolute));
+            img.Source = new Uri(image, UriKind.RelativeOrAbsolute);
             homework_lesson.AppendText(_name);
             homework_content.AppendText(content);
             dt = endtime;
@@ -139,6 +165,7 @@ namespace HomeworkManager
                         TimeSpan timeSpan = DateTime.Now.Subtract(dt);
 
 
+
                         timer2.Elapsed += new ElapsedEventHandler((_sender2, eventArgs2) =>
                             {
                                 if (timeSpan.TotalSeconds < 1)
@@ -161,7 +188,7 @@ namespace HomeworkManager
                                     {
                                         s = progress.Maximum;
                                     }
-                                    if (s < progress.Minimum    )
+                                    if (s < progress.Minimum)
                                     {
                                         s = progress.Minimum;
                                     }
@@ -181,6 +208,93 @@ namespace HomeworkManager
             TimeSpan ts2 = new TimeSpan(dateEnd.Ticks);
             TimeSpan ts3 = ts2.Subtract(ts1);
             return ts3;
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (lb.SelectedIndex)
+            {
+                case 0:
+                    endt.Text = "晚一";
+                    dt= DateTime.Parse("19:20:00");
+                    break;
+                case 1:
+                    endt.Text = "晚二";
+                    dt = DateTime.Parse("20:20:00");
+
+                    break;
+                case 2:
+                    endt.Text = "晚三";
+                    dt = DateTime.Parse("21:20:00");
+
+                    break;
+                case 3:
+                    endt.Text = "无限";
+                    dt = DateTime.Now.AddYears(50);
+
+                    break;
+                default:
+                    endt.Text = "ERROR";
+
+                    break;
+            }
+        }
+
+        bool playing=true;
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            if (playing)
+            {
+                img.Pause();
+                playing = false;
+            }
+            else
+            {
+                img.Play();
+                playing = true;
+            }
+        }
+        bool media_muted = false;
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            if (media_muted)
+            {
+                media_muted = false;
+                img.IsMuted = false;
+            }
+            else
+            {
+                media_muted = true;
+                img.IsMuted = true;
+
+            }
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            if (mediacircle)
+            {
+                mediacircle = false;
+
+            }
+            else
+            {
+                mediacircle = true;
+            }
+        }
+        bool mediacircle = true;
+        private void img_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            if (mediacircle)
+            {
+                (sender as MediaElement).Stop();
+                (sender as MediaElement).Play();
+            }
+        }
+
+        private void img_Loaded(object sender, RoutedEventArgs e)
+        {
+            img.Play();
         }
     }
 }

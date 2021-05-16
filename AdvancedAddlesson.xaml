@@ -95,22 +95,24 @@
                            FontWeight="Bold" />
                 <ListBox Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineListBox}"
                          x:Name="RadioButtonGroupChoiceChipPrimaryOutline"
-                         Margin="84,0,10,299"
+                         Margin="84,0,0,299"
                          Height="45"
                          VerticalAlignment="Bottom"
-                         SelectionChanged="RadioButtonGroupChoiceChipPrimaryOutline_SelectionChanged">
+                         SelectionChanged="RadioButtonGroupChoiceChipPrimaryOutline_SelectionChanged"
+                         HorizontalAlignment="Left"
+                         Width="257">
                     <ListBoxItem IsSelected="True"
                                  Content="经典" />
                     <ListBoxItem Content="二次元" />
                     <ListBoxItem Content="卡片" />
                     <ListBoxItem Content="强调" />
                 </ListBox>
-                <MediaElement HorizontalAlignment="Left"
+                <MediaElement x:Name="media"
+                              HorizontalAlignment="Left"
                               Margin="84,0,0,153"
                               Width="257"
                               Height="141"
-                              VerticalAlignment="Bottom"
-                              />
+                              VerticalAlignment="Bottom" />
                 <Button Style="{StaticResource MaterialDesignIconButton}"
                         ToolTip="添加背景图"
                         Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
@@ -178,9 +180,7 @@
                          HorizontalAlignment="Left"
                          Width="459"
                          SelectionChanged="candi_SelectionChanged"
-                         Foreground="Black"
-                         
-                         />
+                         Foreground="Black" />
                 <TextBlock HorizontalAlignment="Left"
                            Margin="10,90,0,0"
                            TextWrapping="Wrap"
@@ -205,6 +205,25 @@
                            Text="风格"
                            FontSize="20"
                            VerticalAlignment="Bottom" />
+                <TextBlock HorizontalAlignment="Left"
+                           Margin="346,0,0,246"
+                           TextWrapping="Wrap"
+                           Text="在这里加入背景图片/视频"
+                           VerticalAlignment="Bottom" />
+                <TextBlock HorizontalAlignment="Left"
+                           Margin="10,0,0,268"
+                           TextWrapping="Wrap"
+                           Text="媒体"
+                           FontSize="20"
+                           VerticalAlignment="Bottom" />
+                <TextBlock HorizontalAlignment="Left"
+                           Margin="346,0,0,284"
+                           TextWrapping="Wrap"
+                           Text="其实这个没做好"
+                           VerticalAlignment="Bottom"
+                           Height="48"
+                           Width="170"
+                           Name="hints"/>
             </Grid>
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
                 <TextBlock>123</TextBlock>

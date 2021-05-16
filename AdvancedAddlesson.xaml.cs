@@ -210,13 +210,25 @@ namespace HomeworkManager
             switch (RadioButtonGroupChoiceChipPrimaryOutline.SelectedIndex)
             {
                 case -1:break;
-                case 0:
+                case 0://经典
                     
                     break;
-                case 1: break;
-                case 2: break;
-                case 3: break;
-                case 4: break;
+                case 1:
+                    //二次元
+                    hints.Text = "我们将会随机选择图片.";
+                    break;
+                case 2:
+                    //卡片
+                    System.Windows.Forms.MessageBox.Show("这个没做好！");
+                    break;
+                case 3:
+                    //强调
+                    System.Windows.Forms.MessageBox.Show("这个没做好！");
+
+                    break;
+                case 4:
+
+                    break;
 
                 default:
                     break;
@@ -236,6 +248,7 @@ namespace HomeworkManager
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 img = openFileDialog.FileName;
+                media.Source = new Uri(img);
             }  
         }
     }
