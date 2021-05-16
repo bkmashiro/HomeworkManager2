@@ -252,6 +252,7 @@ namespace HomeworkManager
             {
                 img.Play();
                 playing = true;
+
             }
         }
         bool media_muted = false;
