@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Forms;
+//using System.Windows.Forms;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Xml.Linq;
 
@@ -107,23 +107,25 @@ namespace HomeworkManager
             //Animation.OpacityAnimation(gg, 1, 0, TimeSpan.FromMilliseconds(200), DimFinished);
             Frame frame = new Frame();
             CustomizeLessonDemo advancedAddlesson;
-            if (img==string.Empty)
+            if (img == string.Empty)
             {
-                advancedAddlesson = new CustomizeLessonDemo((string)Subjects.SelectedItem, homeworklist1.Text,_endtime, WrapPanel, frame);
+                advancedAddlesson = new CustomizeLessonDemo((string)Subjects.SelectedItem, homeworklist1.Text, _endtime, WrapPanel, frame);
             }
             else
             {
-                advancedAddlesson = new CustomizeLessonDemo((string)Subjects.SelectedItem, homeworklist1.Text, _endtime, WrapPanel, frame,img);
+                advancedAddlesson = new CustomizeLessonDemo((string)Subjects.SelectedItem, homeworklist1.Text, _endtime, WrapPanel, frame, img);
             }
             frame.Content = advancedAddlesson;
             frame.Background = Brushes.Transparent;
 
 
-            WrapPanel.Children.Add(frame);
+            WrapPanel.Children.Add(GetCustomizedHmwk());
 
 
 
             SaveXML();
+            this.Close();
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -144,7 +146,6 @@ namespace HomeworkManager
         {
             UpdateAllCand();
             RegistNewHmwk();
-            this.Close();
         }
         private void UpdateAllCand()
         {
@@ -172,7 +173,7 @@ namespace HomeworkManager
                     break;
                 }
             }
-            
+
         }
 
         DateTime _endtime;
@@ -209,30 +210,30 @@ namespace HomeworkManager
         {
             switch (RadioButtonGroupChoiceChipPrimaryOutline.SelectedIndex)
             {
-                case -1:break;
+                case -1: break;
                 case 0://经典
-                    
+                    SettingsSelected = 1;
                     break;
                 case 1:
                     //二次元
-                    hints.Text = "我们将会随机选择图片.";
+                    SettingsSelected = 2;
+
                     break;
                 case 2:
                     //卡片
-                    System.Windows.Forms.MessageBox.Show("这个没做好！");
-                    break;
-                case 3:
-                    //强调
-                    System.Windows.Forms.MessageBox.Show("这个没做好！");
+                    SettingsSelected = 3;
 
                     break;
-                case 4:
+                case 3:
+                    //自定义
+                    SettingsSelected = 4;
 
                     break;
 
                 default:
                     break;
             }
+            trans.SelectedIndex = 1;
         }
 
         private void Button_Click4(object sender, RoutedEventArgs e)
@@ -242,14 +243,206 @@ namespace HomeworkManager
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
+            var openFileDialog = new System.Windows.Forms.OpenFileDialog();
             openFileDialog.RestoreDirectory = true;
             openFileDialog.FilterIndex = 1;
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 img = openFileDialog.FileName;
-                media.Source = new Uri(img);
-            }  
+                //media.Source = new Uri(img);
+                MediaElement mediaElement = new MediaElement();
+                mediaElement.Source = new Uri(img);
+                mediaElement.MouseLeftButtonDown += MediaElement_MouseLeftButtonDown;
+                mediaElement.MouseRightButtonDown += MediaElement_MouseRightButtonDown;
+                mediaElement.HorizontalAlignment = HorizontalAlignment.Left;
+                mediaElement.VerticalAlignment = VerticalAlignment.Top;
+                mediaElement.MaxWidth = 1920 / 2;
+                mediaElement.MinWidth = 100;
+                AddToPreview(mediaElement);
+            }
+        }
+
+        private void MediaElement_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if ((sender as MediaElement).CanPause)
+            {
+                (sender as MediaElement).LoadedBehavior = MediaState.Manual;
+
+                (sender as MediaElement).Play();
+            }
+        }
+
+        private void MediaElement_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if ((sender as MediaElement).CanPause)
+            {
+                (sender as MediaElement).LoadedBehavior = MediaState.Manual;
+
+                (sender as MediaElement).Pause();
+            }
+        }
+
+        UIElement currentElement = null;//当前选定的element
+
+
+        private void EnableDrag(UIElement uiEle)
+        {
+            if (uiEle != null)
+            {
+
+                uiEle.AddHandler(MouseLeftButtonDownEvent, new MouseButtonEventHandler(Element_MouseLeftButtonDown), true);
+                uiEle.AddHandler(MouseMoveEvent, new MouseEventHandler(Element_MouseMove), true);
+                uiEle.AddHandler(MouseLeftButtonUpEvent, new MouseButtonEventHandler(Element_MouseLeftButtonUp), true);
+
+                uiEle.MouseMove += new MouseEventHandler(Element_MouseMove);
+                uiEle.MouseLeftButtonDown += new MouseButtonEventHandler(Element_MouseLeftButtonDown);
+                uiEle.MouseLeftButtonUp += new MouseButtonEventHandler(Element_MouseLeftButtonUp);
+            }
+        }
+        bool isDragDropInEffect = false;
+        Point pos = new Point();
+
+        void Element_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDragDropInEffect)
+            {
+                FrameworkElement currEle = sender as FrameworkElement;
+                double xPos = e.GetPosition(null).X - pos.X + currEle.Margin.Left;
+                double yPos = e.GetPosition(null).Y - pos.Y + currEle.Margin.Top;
+                currEle.Margin = new Thickness(xPos, yPos, 0, 0);
+                pos = e.GetPosition(null);
+            }
+        }
+        void Element_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            FrameworkElement fEle = sender as FrameworkElement;
+            currentElement = fEle;
+            elementInfo.Text = $"{fEle.GetType()}高{fEle.ActualHeight}宽{fEle.ActualWidth}位于Left:{fEle.Margin.Left}Top:{fEle.Margin.Top}";
+            isDragDropInEffect = true;
+            pos = e.GetPosition(null);
+            fEle.CaptureMouse();
+            fEle.Cursor = System.Windows.Input.Cursors.Hand;
+        }
+        void Element_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (isDragDropInEffect)
+            {
+                FrameworkElement ele = sender as FrameworkElement;
+                elementInfo.Text = $"{ele.GetType()}高{ele.ActualHeight}宽{ele.ActualWidth}位于Left:{ele.Margin.Left}Top:{ele.Margin.Top}";
+                isDragDropInEffect = false;
+                ele.ReleaseMouseCapture();
+            }
+        }
+
+        private void AddToPreview(UIElement uIElement)
+        {
+            EnableDrag(uIElement);
+            preview.Children.Add(uIElement);
+        }
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var textBlock = new Emoji.Wpf.RichTextBox();
+            textBlock.HorizontalAlignment = HorizontalAlignment.Left;
+            textBlock.VerticalAlignment = VerticalAlignment.Top;
+            textBlock.Width = double.NaN;
+            textBlock.Height = double.NaN;
+            textBlock.FontSize = 40;
+            textBlock.MaxWidth = 1920 / 2;
+            textBlock.MaxHeight = 1080;
+            textBlock.Text = "点击来修改";
+            textBlock.Background = Brushes.Transparent;
+            textBlock.BorderBrush = Brushes.Transparent;
+
+
+
+            AddToPreview(textBlock);
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private Frame GetCustomizedHmwk()
+        {
+            Frame frame = new Frame();
+            frame.Background = Brushes.Transparent;
+            var tmp = this.prvh.Children[0];
+            this.prvh.Children.Remove(this.prvh.Children[0]);
+            if (tmp is Grid)
+            {
+                (tmp as Grid).Margin = new Thickness(0);
+
+            }
+            if (tmp is Page)
+            {
+                (tmp as Page).Margin = new Thickness(0);
+
+            }
+            frame.Content = tmp;
+            return frame;
+        }
+
+        int SettingsSelected = 0;
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            trans.SelectedIndex = 0;
+            //queren
+            switch (SettingsSelected)
+            {
+                case 0:
+                    break;
+                case 1:
+                    //classic
+
+                    break;
+                case 2:
+                    //nijien
+                    prvh.Children.Clear();
+                    OnErciyuanTriggered();
+                    break;
+                case 3:
+                    //card
+                    break;
+                case 4:
+                    //customize
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            trans.SelectedIndex = 0;
+        }
+
+        private void OnClassicTriggered()
+        {
+
+        }
+        private void OnErciyuanTriggered()
+        {
+            Frame frame = new Frame();
+            frame.Content = new cst.nijien();
+            prvh.Children.Add(frame);
+        }
+        private void OnCardTriggered()
+        {
+
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            if (preview.Children.Contains(currentElement))
+            {
+                preview.Children.Remove(currentElement);
+            }
         }
     }
 }

@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HomeworkManager"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
         mc:Ignorable="d"
         Title="AdvancedAddlesson"
-        Height="800"
-        Width="1200"
-        Loaded="Window_Loaded">
-    <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="89819137_p0.jpg"
-                        Opacity="0.4" />
-        </Grid.Background>
-        <materialDesign:Transitioner SelectedIndex="0">
+        Height="1000"
+        Width="1692"
+        Loaded="Window_Loaded"
+        Left="0"
+        Top="0">
+    <Grid Background="#FFFFE3E3">
+        <materialDesign:Transitioner SelectedIndex="0"
+                                     x:Name="trans">
             <materialDesign:Transitioner.InputBindings>
                 <KeyBinding Key="Left"
                             Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}" />
@@ -79,53 +79,52 @@
                 </Button>
                 <ComboBox Name="Subjects"
                           HorizontalAlignment="Left"
-                          Margin="81,88,0,0"
+                          Margin="84,106,0,0"
                           VerticalAlignment="Top"
                           Width="120"
                           SelectionChanged="Subjects_SelectionChanged"
                           Height="27"
                           Foreground="Black" />
-                <TextBlock Margin="10,10,10,0"
-                           TextWrapping="Wrap"
-                           Text="高级样式编辑器 - 测试"
-                           VerticalAlignment="Top"
-                           Height="70"
-                           FontSize="50"
-                           FontStyle="Italic"
-                           FontWeight="Bold" />
                 <ListBox Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineListBox}"
                          x:Name="RadioButtonGroupChoiceChipPrimaryOutline"
-                         Margin="84,0,0,299"
-                         Height="45"
-                         VerticalAlignment="Bottom"
+                         Margin="84,338,0,0"
+                         Height="44"
+                         VerticalAlignment="Top"
                          SelectionChanged="RadioButtonGroupChoiceChipPrimaryOutline_SelectionChanged"
                          HorizontalAlignment="Left"
-                         Width="257">
+                         Width="446">
                     <ListBoxItem IsSelected="True"
                                  Content="经典" />
                     <ListBoxItem Content="二次元" />
                     <ListBoxItem Content="卡片" />
-                    <ListBoxItem Content="强调" />
+                    <ListBoxItem Content="自定义" />
                 </ListBox>
-                <MediaElement x:Name="media"
-                              HorizontalAlignment="Left"
-                              Margin="84,0,0,153"
-                              Width="257"
-                              Height="141"
-                              VerticalAlignment="Bottom" />
                 <Button Style="{StaticResource MaterialDesignIconButton}"
-                        ToolTip="添加背景图"
+                        ToolTip="添加媒体"
                         Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
-                        Margin="346,0,0,246"
+                        Margin="84,387,0,0"
                         HorizontalAlignment="Left"
                         d:LayoutOverrides="Width, Height"
-                        VerticalAlignment="Bottom"
+                        VerticalAlignment="Top"
                         Click="Button_Click">
-                    <materialDesign:PackIcon Kind="Plus" />
+                    <materialDesign:PackIcon Kind="ImageAdd" />
                 </Button>
+                <Slider Orientation="Vertical"
+                        Minimum="0"
+                        Maximum="1980"
+                        Value="80"
+                        Style="{StaticResource MaterialDesignDiscreteSlider}"
+                        TickFrequency="100"
+                        TickPlacement="TopLeft"
+                        SelectionStart="100"
+                        SelectionEnd="400"
+                        IsSelectionRangeEnabled="True"
+                        HorizontalAlignment="Left"
+                        Margin="84,583,0,183"
+                        Width="55" />
                 <Button Content="清空"
                         HorizontalAlignment="Left"
-                        Margin="455,278,0,0"
+                        Margin="455,281,0,0"
                         Width="75"
                         VerticalAlignment="Top"
                         d:LayoutOverrides="Height"
@@ -143,10 +142,11 @@
                         Margin="0,0,10,213"
                         VerticalAlignment="Bottom"
                         d:LayoutOverrides="Height"
-                        Background="#FF007BD6">NEXT</Button>
+                        Background="#FF007BD6"
+                        Visibility="Collapsed">NEXT</Button>
                 <ListBox Style="{StaticResource MaterialDesignToolToggleFlatListBox}"
                          SelectedIndex="0"
-                         Margin="81,320,0,0"
+                         Margin="84,283,0,0"
                          Height="29"
                          VerticalAlignment="Top"
                          SelectionChanged="ListBox_SelectionChanged"
@@ -175,58 +175,126 @@
                     </ListBoxItem>
                 </ListBox>
                 <ListBox x:Name="candi"
-                         Margin="535,138,0,349"
+                         Margin="535,138,0,0"
                          Background="#FF6A6FE2"
                          HorizontalAlignment="Left"
                          Width="459"
                          SelectionChanged="candi_SelectionChanged"
-                         Foreground="Black" />
-                <TextBlock HorizontalAlignment="Left"
-                           Margin="10,90,0,0"
+                         Foreground="Black"
+                         Height="175"
+                         VerticalAlignment="Top" />
+                <Grid x:Name="prvh">
+                    <Grid x:Name="preview"
+                          Margin="714,0,10,209"
+                          Width="960"
+                          Background="#FFEAEAEA"
+                          Height="196"
+                          VerticalAlignment="Bottom" />
+                </Grid>
+                <Button Style="{StaticResource MaterialDesignIconButton}"
+                        ToolTip="添加文字"
+                        Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                        Margin="84,440,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Click="Button_Click_1"
+                        d:LayoutOverrides="Width, Height">
+                    <materialDesign:PackIcon Kind="Text" />
+                </Button>
+                <Button Style="{StaticResource MaterialDesignIconButton}"
+                        ToolTip="添加标题"
+                        Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                        Margin="84,493,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Click="Button_Click_2"
+                        d:LayoutOverrides="Width, Height">
+                    <materialDesign:PackIcon Kind="ViewHeadline" />
+                </Button>
+                <Button Style="{StaticResource MaterialDesignIconButton}"
+                        ToolTip="分割线"
+                        Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                        Margin="137,440,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Click="Button_Click_3"
+                        d:LayoutOverrides="Width, Height">
+                    <materialDesign:PackIcon Kind="ArrowCollapseVertical" />
+                </Button>
+                <Button Style="{StaticResource MaterialDesignIconButton}"
+                        ToolTip="分割线"
+                        Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                        Margin="137,493,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Click="Button_Click_6"
+                        d:LayoutOverrides="Width, Height">
+                    <materialDesign:PackIcon Kind="Remove" />
+                </Button>
+                <TextBlock x:Name="elementInfo"
+                           HorizontalAlignment="Left"
+                           Margin="84,541,0,0"
                            TextWrapping="Wrap"
-                           Text="课程"
-                           VerticalAlignment="Top"
-                           FontSize="20" />
-                <TextBlock HorizontalAlignment="Left"
-                           Margin="10,138,0,0"
-                           TextWrapping="Wrap"
-                           Text="内容"
-                           VerticalAlignment="Top"
-                           FontSize="20" />
-                <TextBlock HorizontalAlignment="Left"
-                           Margin="10,320,0,0"
-                           TextWrapping="Wrap"
-                           Text="时间"
-                           VerticalAlignment="Top"
-                           FontSize="20" />
-                <TextBlock HorizontalAlignment="Left"
-                           Margin="10,0,0,314"
-                           TextWrapping="Wrap"
-                           Text="风格"
-                           FontSize="20"
-                           VerticalAlignment="Bottom" />
-                <TextBlock HorizontalAlignment="Left"
-                           Margin="346,0,0,246"
-                           TextWrapping="Wrap"
-                           Text="在这里加入背景图片/视频"
-                           VerticalAlignment="Bottom" />
-                <TextBlock HorizontalAlignment="Left"
-                           Margin="10,0,0,268"
-                           TextWrapping="Wrap"
-                           Text="媒体"
-                           FontSize="20"
-                           VerticalAlignment="Bottom" />
-                <TextBlock HorizontalAlignment="Left"
-                           Margin="346,0,0,284"
-                           TextWrapping="Wrap"
-                           Text="其实这个没做好"
-                           VerticalAlignment="Bottom"
-                           Height="48"
-                           Width="170"
-                           Name="hints"/>
+                           Text="没有对象"
+                           VerticalAlignment="Top" />
             </Grid>
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
-                <TextBlock>123</TextBlock>
+                <Grid>
+                    <materialDesign:PackIcon                Kind="AlertCircleOutline"
+                                                            Height="229"
+                                                            Width="229"
+                                                            Margin="63,222,0,0"
+                                                            Foreground="Red" />
+                    <TextBlock Margin="292,240,10,0"
+                               Height="211"
+                               VerticalAlignment="Top"
+                               FontSize="150"
+                               Text="二次确认"></TextBlock>
+                    <TextBlock FontSize="70"
+                               Margin="172,451,130,422"
+                               d:LayoutOverrides="VerticalAlignment"><Run Text="注意：" /><Run Text="调整" /><Run Text="预设" /><Run Text="将会覆盖之前的修改" /><Run Text="内容" /><Run Text="！" /></TextBlock>
+                    <materialDesign:Badged Badge="危险！"
+                                           BadgeColorZoneMode="Dark"
+                                           Height="31"
+                                           Width="85"
+                                           Margin="420,0,0,289"
+                                           VerticalAlignment="Bottom"
+                                           RenderTransformOrigin="0.5,0.5">
+                        <materialDesign:Badged.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="3"
+                                                ScaleY="3" />
+                                <SkewTransform />
+                                <RotateTransform />
+                                <TranslateTransform />
+                            </TransformGroup>
+                        </materialDesign:Badged.RenderTransform>
+                        <Button Content="确认修改"
+                                Width="88"
+                                Click="Button_Click_4" />
+                    </materialDesign:Badged>
+                    <materialDesign:Badged Badge="怂了"
+                                           BadgeColorZoneMode="Dark"
+                                           Height="31"
+                                           Width="85"
+                                           Margin="0,0,438,286"
+                                           VerticalAlignment="Bottom"
+                                           RenderTransformOrigin="0.5,0.5"
+                                           HorizontalAlignment="Right">
+                        <materialDesign:Badged.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="3"
+                                                ScaleY="3" />
+                                <SkewTransform />
+                                <RotateTransform />
+                                <TranslateTransform />
+                            </TransformGroup>
+                        </materialDesign:Badged.RenderTransform>
+                        <Button Content="放弃"
+                                Width="88"
+                                Click="Button_Click_5" />
+                    </materialDesign:Badged>
+                </Grid>
             </materialDesign:TransitionerSlide>
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
                 <TextBlock>456</TextBlock>
